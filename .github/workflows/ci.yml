@@ -19,13 +19,16 @@ jobs:
       with:
         node-version: 18
         cache: 'npm'
+        cache-dependency-path: my-vite-app/package-lock.json  # Ensure caching works correctly
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+      working-directory: my-vite-app  # <-- Set the correct folder
 
     - name: Run tests
       run: npm test
+      working-directory: my-vite-app
 
     - name: Build project
       run: npm run build
-
+      working-directory: my-vite-app
